@@ -127,3 +127,12 @@ char *quote_char(char c) {
     if (c == '\'') return "\\'";
     return format("%c", c);
 }
+
+void buf_append(Buffer *b, char *s, int len) {
+    if (b->nalloc < (b->len + len)) {
+        fprintf(stderr, "Error: Youji said input is too large for the buffer uwu.\n");
+        exit(1);
+    }
+    for (int i = 0; i < len; i++)
+        buf_write(b, s[i]);
+}
